@@ -227,7 +227,7 @@ log line for that request.
   "confidence_score": 0.92,
   "model_name": "claude-sonnet-4-6",
   "used_mock": false,
-  "created_at": "2026-05-28T10:13:01.221Z"
+  "created_at": "2024-09-17T10:13:01.221Z"
 }
 ```
 
@@ -363,4 +363,4 @@ matter in production:
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE).
+MIT — see [`LICENSE`](LICENSE). Built in 2024 as a portfolio project.
