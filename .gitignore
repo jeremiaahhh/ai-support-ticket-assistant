@@ -18,6 +18,7 @@ node_modules/
 .next/
 out/
 *.tsbuildinfo
+next-env.d.ts
 npm-debug.log*
 
 # Editors / OS
@@ -25,5 +26,7 @@ npm-debug.log*
 .idea/
 .DS_Store
 
-# Postgres volume (when running outside docker)
+# Local databases / Postgres volume
+*.db
+*.sqlite
 pgdata/
