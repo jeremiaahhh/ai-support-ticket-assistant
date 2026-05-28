@@ -3,9 +3,10 @@
 import { useState } from "react";
 import {
   ClipboardCopy,
+  FileSearch,
   Lightbulb,
+  Play,
   RefreshCw,
-  Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -46,10 +47,10 @@ export function AiAnalysisPanel({ ticket, onAnalyzed }: Props) {
       <Card className="border-dashed">
         <CardContent className="flex flex-col items-center gap-4 px-6 py-10 text-center">
           <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <Sparkles className="h-6 w-6" />
+            <FileSearch className="h-6 w-6" />
           </div>
           <div className="space-y-1">
-            <h3 className="text-base font-semibold">Run the AI analyzer</h3>
+            <h3 className="text-base font-semibold">Run the analyzer</h3>
             <p className="max-w-sm text-sm text-muted-foreground">
               Classify category and urgency, generate a one-paragraph summary, and draft a
               ready-to-send customer reply. Mock mode is on by default so this works without an
@@ -57,8 +58,8 @@ export function AiAnalysisPanel({ ticket, onAnalyzed }: Props) {
             </p>
           </div>
           <Button onClick={() => analyze(false)} disabled={pending}>
-            <Sparkles className="h-4 w-4" />
-            {pending ? "Analyzing…" : "Analyze with AI"}
+            <Play className="h-4 w-4" />
+            {pending ? "Analyzing…" : "Run analysis"}
           </Button>
         </CardContent>
       </Card>
@@ -95,8 +96,8 @@ function AnalysisCard({ analysis, pending, onRefresh }: AnalysisCardProps) {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between gap-4 space-y-0">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-primary" />
-            <CardTitle>AI analysis</CardTitle>
+            <FileSearch className="h-4 w-4 text-primary" />
+            <CardTitle>Analysis</CardTitle>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-[11px] text-muted-foreground">

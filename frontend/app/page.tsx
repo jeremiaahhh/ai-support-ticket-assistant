@@ -6,8 +6,8 @@ import {
   AlertOctagon,
   ArrowRight,
   CheckCircle2,
+  GaugeCircle,
   Inbox,
-  Sparkles,
 } from "lucide-react";
 
 import { CategoryBreakdownCard } from "@/components/dashboard/category-breakdown-card";
@@ -89,14 +89,14 @@ export default function DashboardPage() {
               }}
             />
             <KpiCard
-              label="Avg. AI confidence"
+              label="Avg. confidence"
               value={
                 summary.analyzed_tickets === 0
                   ? "—"
                   : formatPercent(summary.average_confidence, 0)
               }
               helper={`${summary.analyzed_tickets} ticket${summary.analyzed_tickets === 1 ? "" : "s"} analyzed`}
-              icon={Sparkles}
+              icon={GaugeCircle}
               accent="primary"
             />
             <KpiCard

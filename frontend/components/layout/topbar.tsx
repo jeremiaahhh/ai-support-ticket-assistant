@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Moon, Plus, Sparkles, Sun } from "lucide-react";
+import { Moon, Plus, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useHealth } from "@/hooks/use-health";
@@ -44,8 +44,13 @@ export function Topbar() {
               : "border-emerald-500/30 bg-emerald-500/10 text-emerald-500",
           )}
         >
-          <Sparkles className="h-3 w-3" />
-          {mock ? "Mock AI mode" : `Live · ${health?.ai_provider ?? "anthropic"}`}
+          <span
+            className={cn(
+              "h-1.5 w-1.5 rounded-full",
+              mock ? "bg-primary" : "bg-emerald-500",
+            )}
+          />
+          {mock ? "Mock mode" : `Live · ${health?.ai_provider ?? "anthropic"}`}
         </div>
       </div>
 

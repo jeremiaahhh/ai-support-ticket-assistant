@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft, ClipboardPaste } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 
@@ -104,7 +104,7 @@ export default function NewTicketPage() {
         description="Paste in an inbound email or describe the issue manually. The AI assistant will classify it, score urgency, and draft a reply."
         actions={
           <Button variant="outline" size="sm" type="button" onClick={fillExample}>
-            <Sparkles className="h-3.5 w-3.5" />
+            <ClipboardPaste className="h-3.5 w-3.5" />
             Fill with example
           </Button>
         }

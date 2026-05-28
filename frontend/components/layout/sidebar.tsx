@@ -1,13 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Activity,
   GaugeCircle,
   Inbox,
-  LifeBuoy,
-  Sparkles,
+  PlusCircle,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -21,7 +21,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Dashboard", icon: GaugeCircle },
   { href: "/tickets", label: "Tickets", icon: Inbox },
-  { href: "/tickets/new", label: "New ticket", icon: Sparkles },
+  { href: "/tickets/new", label: "New ticket", icon: PlusCircle },
 ];
 
 export function Sidebar() {
@@ -29,12 +29,17 @@ export function Sidebar() {
 
   return (
     <aside className="hidden h-screen w-64 shrink-0 flex-col border-r border-white/5 bg-sidebar text-sidebar-foreground lg:flex">
-      <div className="flex h-16 items-center gap-2 border-b border-white/5 px-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary">
-          <LifeBuoy className="h-5 w-5" />
-        </div>
+      <div className="flex h-16 items-center gap-2.5 border-b border-white/5 px-5">
+        <Image
+          src="/logo.png"
+          alt="Helpdesk logo"
+          width={36}
+          height={36}
+          priority
+          className="h-9 w-9 rounded-lg shadow-sm ring-1 ring-white/10"
+        />
         <div className="leading-tight">
-          <div className="text-sm font-semibold tracking-tight text-white">Helpdesk AI</div>
+          <div className="text-sm font-semibold tracking-tight text-white">Helpdesk</div>
           <div className="text-[11px] text-white/50">Support Ticket Assistant</div>
         </div>
       </div>
