@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 26% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 234 89% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 16% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 234 80% 96%;
+    --accent-foreground: 234 89% 30%;
+
+    --destructive: 0 78% 56%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 60% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 34 96% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 220 14% 91%;
+    --input: 220 14% 91%;
+    --ring: 234 89% 60%;
+
+    --sidebar: 224 32% 14%;
+    --sidebar-foreground: 220 14% 88%;
+
+    --shadow-color: 222 47% 11%;
+
+    --radius: 0.75rem;
+
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+
+  .dark {
+    --background: 224 32% 8%;
+    --foreground: 220 14% 95%;
+
+    --card: 224 30% 12%;
+    --card-foreground: 220 14% 95%;
+
+    --popover: 224 30% 12%;
+    --popover-foreground: 220 14% 95%;
+
+    --primary: 234 90% 66%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 224 24% 18%;
+    --secondary-foreground: 220 14% 95%;
+
+    --muted: 224 24% 16%;
+    --muted-foreground: 220 9% 65%;
+
+    --accent: 234 50% 22%;
+    --accent-foreground: 220 14% 95%;
+
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 55% 50%;
+    --success-foreground: 222 47% 11%;
+
+    --warning: 34 96% 56%;
+    --warning-foreground: 222 47% 11%;
+
+    --border: 224 24% 20%;
+    --input: 224 24% 20%;
+    --ring: 234 90% 66%;
+
+    --sidebar: 224 36% 6%;
+    --sidebar-foreground: 220 14% 88%;
+
+    --shadow-color: 0 0% 0%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html,
+  body {
+    @apply h-full;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1, "cv11" 1;
+  }
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .gradient-fade {
+    mask-image: radial-gradient(circle at top, black 30%, transparent 75%);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-border;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
