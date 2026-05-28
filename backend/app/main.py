@@ -41,7 +41,7 @@ async def lifespan(app: FastAPI):
 def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(
-        title="AI Support Ticket Assistant",
+        title="Support Ticket Triage",
         description=(
             "An AI system that classifies support tickets, detects urgency, summarizes the "
             "issue, and suggests a professional customer response."

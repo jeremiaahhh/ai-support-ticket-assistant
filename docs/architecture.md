@@ -6,10 +6,10 @@
 flowchart LR
     UI[Next.js UI<br/>App Router] -- HTTP/JSON --> API[FastAPI app]
     API -- SQLAlchemy --> PG[(Postgres)]
-    API -- provider abstraction --> AI{LLM provider}
-    AI -- mock --> MOCK[MockAIService<br/>deterministic rules]
-    AI -- live --> ANT[Anthropic Claude]
-    AI -- live --> OAI[OpenAI]
+    API -- provider abstraction --> LLM{LLM provider}
+    LLM -- mock --> MOCK[MockAIService<br/>deterministic rules]
+    LLM -- live --> ANT[Anthropic Claude]
+    LLM -- live --> OAI[OpenAI]
 ```
 
 Three deployable units — frontend, backend, and Postgres — orchestrated with
@@ -34,7 +34,7 @@ core/             ← settings, structured logging, error handlers
 
 - **Routes** parse and validate requests, call a service, and return a Pydantic
   schema. They never touch SQLAlchemy directly.
-- **Services** own business rules: ticket lifecycle, AI orchestration, analytics
+- **Services** own business rules: ticket lifecycle, LLM orchestration, analytics
   aggregation.
 - **Repositories** are the only place that constructs SQL queries.
 - **LLM providers** all implement the same `_Provider` protocol. The factory
@@ -58,8 +58,8 @@ tickets ─────────── 1 ── 0..1 ─── ticket_analyse
 | body           | text          | full customer message                                |
 | customer_email | str?          |                                                      |
 | customer_name  | str?          |                                                      |
-| category       | enum?         | inferred by AI on analysis if left blank by the user |
-| priority       | enum          | defaults `medium`; can be raised by AI               |
+| category       | enum?         | inferred by the model on analysis if left blank by the user |
+| priority       | enum          | defaults `medium`; can be raised by the analyzer               |
 | status         | enum          | `open` / `in_progress` / `resolved`                  |
 | created_at     | timestamptz   |                                                      |
 | updated_at     | timestamptz   |                                                      |
@@ -113,8 +113,8 @@ sequenceDiagram
     ANL-->>UI: AnalysisRead
 ```
 
-The post-analysis sync is important: the AI's category fills in unset values on
-the ticket, and the AI's priority *can only raise* the ticket's priority. We
+The post-analysis sync is important: the analyzer's category fills in unset values on
+the ticket, and the analyzer's priority *can only raise* the ticket's priority. We
 never silently downgrade a human's call.
 
 ## Provider abstraction
@@ -137,7 +137,7 @@ Selection rules:
 All three providers return the same `AnalysisResult` dataclass, so the rest of
 the app has no provider-specific code paths.
 
-## Mock AI design
+## Mock analyzer design
 
 The mock is intentionally not random. It runs a small rule engine over the
 ticket text:
@@ -156,7 +156,7 @@ ticket text:
   the same score every time — useful for tests and for screenshots.
 
 This is what makes the project portfolio-friendly: a reviewer can
-`docker compose up` and see meaningful AI behavior immediately, without
+`docker compose up` and see meaningful classifier behavior immediately, without
 procuring an API key.
 
 ## Frontend
@@ -166,10 +166,10 @@ app/
   page.tsx                ← Dashboard (KPIs + queue snapshot + breakdowns)
   tickets/page.tsx        ← Ticket queue with search + filter + sort
   tickets/new/page.tsx    ← New ticket form (with "fill example")
-  tickets/[id]/page.tsx   ← Ticket detail + AI panel + status controls
+  tickets/[id]/page.tsx   ← Ticket detail + analysis panel + status controls
 components/
   layout/                 ← sidebar, topbar, app shell
-  tickets/                ← badges, table, filters, AI analysis panel,
+  tickets/                ← badges, table, filters, Analysis panel,
                             confidence meter, ticket meta card
   dashboard/              ← KPI card, category + priority breakdown
   ui/                     ← shadcn-style primitives

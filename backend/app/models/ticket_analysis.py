@@ -1,4 +1,4 @@
-"""Ticket AI analysis ORM model."""
+"""Ticket Analysis ORM model."""
 
 from __future__ import annotations
 

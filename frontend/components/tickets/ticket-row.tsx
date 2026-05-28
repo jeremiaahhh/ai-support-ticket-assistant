@@ -25,7 +25,7 @@ export function TicketRow({ ticket }: { ticket: Ticket }) {
             <p className="truncate text-sm font-semibold text-foreground">{ticket.subject}</p>
             {ticket.analysis ? (
               <span className="text-[10px] font-medium uppercase tracking-wider text-primary/80">
-                · AI analyzed
+                · Analyzed
               </span>
             ) : null}
           </div>

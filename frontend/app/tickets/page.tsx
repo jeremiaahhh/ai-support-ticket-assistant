@@ -44,7 +44,7 @@ export default function TicketsPage() {
       <PageHeader
         eyebrow="Inbox"
         title="Support tickets"
-        description="Triage every ticket in one queue. Filter by category, urgency, or status, and click a row to see the AI's analysis and a suggested reply."
+        description="Triage every ticket in one queue. Filter by category, urgency, or status, and click a row to see the analysis and a suggested reply."
         actions={
           <Button asChild>
             <Link href="/tickets/new">

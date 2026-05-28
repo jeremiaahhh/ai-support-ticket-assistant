@@ -1,4 +1,4 @@
-"""Run an AI analysis on a ticket and persist the result."""
+"""Run an Analysis on a ticket and persist the result."""
 
 from __future__ import annotations
 

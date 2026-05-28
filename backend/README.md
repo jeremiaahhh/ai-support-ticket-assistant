@@ -1,6 +1,6 @@
 # Backend — FastAPI support ticket service
 
-Layered FastAPI app powering the AI Support Ticket Assistant. See the
+Layered FastAPI app powering the Support Ticket Triage. See the
 [root README](../README.md) and [`docs/architecture.md`](../docs/architecture.md)
 for the full picture.
 
@@ -21,7 +21,7 @@ uvicorn app.main:app --reload --port 8000
 pytest -q
 ```
 
-Tests use SQLite and the mock AI provider, so no Postgres or external API keys
+Tests use SQLite and the mock provider, so no Postgres or external API keys
 are required.
 
 ## Folder layout

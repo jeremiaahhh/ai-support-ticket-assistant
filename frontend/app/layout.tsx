@@ -7,9 +7,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Support Ticket Assistant",
+  title: "Support Ticket Triage",
   description:
-    "Triage, summarize, and reply to customer support tickets with AI. Built with FastAPI and Next.js.",
+    "Triage, summarize, and reply to customer support tickets. Built with FastAPI and Next.js.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

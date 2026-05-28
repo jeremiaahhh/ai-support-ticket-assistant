@@ -29,7 +29,7 @@ export function ConfidenceMeter({ score, className, showHelper = true }: Props) 
   return (
     <div className={cn("space-y-1.5", className)}>
       <div className="flex items-center justify-between text-xs font-medium text-muted-foreground">
-        <span className="uppercase tracking-[0.16em]">AI confidence</span>
+        <span className="uppercase tracking-[0.16em]">Confidence</span>
         <span className="text-foreground tabular-nums">{pct}%</span>
       </div>
       <Progress value={pct} indicatorClassName={color} className="h-2" />

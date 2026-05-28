@@ -187,7 +187,7 @@ export default function TicketDetailPage({
           <DialogHeader>
             <DialogTitle>Delete this ticket?</DialogTitle>
             <DialogDescription>
-              This permanently removes the ticket and its AI analysis. This action can't be
+              This permanently removes the ticket and its analysis. This action can't be
               undone.
             </DialogDescription>
           </DialogHeader>

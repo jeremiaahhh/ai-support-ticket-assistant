@@ -1,12 +1,12 @@
-# AI Support Ticket Assistant
+# Support Ticket Triage
 
-A full-stack AI support platform. Inbound customer tickets are classified,
+A full-stack support triage platform. Inbound customer tickets are classified,
 prioritised, summarised, and answered with a suggested reply — surfaced
 through a polished operations dashboard with KPIs, filters, and a typed
 detail view.
 
 The stack runs end-to-end **without an API key** thanks to a built-in
-deterministic mock AI provider. Set `USE_MOCK_AI=false` and supply an
+deterministic mock provider. Set `USE_MOCK_AI=false` and supply an
 `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` to switch providers; nothing else
 changes.
 
@@ -26,7 +26,7 @@ changes.
 Captures live in `docs/screenshots/`. Drop new ones in and the tables below
 update automatically.
 
-| Dashboard | Ticket detail with AI analysis |
+| Dashboard | Ticket detail with analysis |
 | --- | --- |
 | ![Dashboard](docs/screenshots/dashboard.png) | ![Ticket detail](docs/screenshots/ticket-detail.png) |
 
@@ -57,9 +57,9 @@ This repo implements that pipeline end to end:
   for regeneration; categories and priorities are enum-constrained so
   reporting stays consistent.
 - **Surface** — operations dashboard with KPI cards, filterable queue,
-  ticket detail with AI panel, status workflow.
+  ticket detail with analysis panel, status workflow.
 
-Mock-AI mode is a deliberate design choice: the full product — classification,
+Mock mode is a deliberate design choice: the full product — classification,
 filters, analytics, suggested replies — works without external dependencies,
 so the project clones cleanly and runs with a single command.
 
@@ -87,10 +87,10 @@ so the project clones cleanly and runs with a single command.
 flowchart LR
     UI[Next.js UI<br/>App Router] -- HTTP/JSON --> API[FastAPI app]
     API -- SQLAlchemy --> PG[(Postgres<br/>tickets, analyses)]
-    API -- provider abstraction --> AI{LLM provider}
-    AI -- mock --> MOCK[MockAIService<br/>deterministic rules]
-    AI -- live --> ANT[Anthropic Claude]
-    AI -- live --> OAI[OpenAI]
+    API -- provider abstraction --> LLM{LLM provider}
+    LLM -- mock --> MOCK[MockAIService<br/>deterministic rules]
+    LLM -- live --> ANT[Anthropic Claude]
+    LLM -- live --> OAI[OpenAI]
 ```
 
 Three deployable units — frontend, backend, database — orchestrated with
@@ -126,10 +126,10 @@ Then in the browser:
 
 1. **Dashboard** (http://localhost:3000) — KPI cards (Total, Critical,
    Avg. confidence, Resolved) populate from the seed data. The
-   "Highest-priority tickets" panel surfaces what the AI flagged.
+   "Highest-priority tickets" panel surfaces what it flagged.
 2. **Open a critical ticket** — e.g. *"Production down — 500s on all checkout
    requests."* The right column has status / priority / category controls;
-   the center column shows the customer message and a populated AI analysis
+   the center column shows the customer message and a populated analysis
    card with summary, suggested response, reasoning, and confidence meter.
 3. **Re-run analysis** — the "Re-run" button calls `analyze` with
    `force=true` to regenerate the suggested response without creating a new
@@ -137,14 +137,14 @@ Then in the browser:
 4. **Queue & filters** — *Tickets* in the sidebar. Filter by
    `Priority = Critical` or `Category = Billing`.
 5. **Create a ticket** — *New ticket*. Click *Fill with example* first, then
-   submit and watch the AI panel populate on the detail page.
+   submit and watch the analysis panel populate on the detail page.
 6. **Flip to a live model** *(optional)*:
    ```
    USE_MOCK_AI=false
    AI_PROVIDER=anthropic
    ANTHROPIC_API_KEY=sk-ant-…
    ```
-   Restart the backend. The top-bar badge changes from *Mock AI mode* to
+   Restart the backend. The top-bar badge changes from *Mock mode* to
    *Live · anthropic*.
 
 ---
@@ -207,7 +207,7 @@ All endpoints are documented interactively at http://localhost:8000/docs
 | GET    | `/tickets/{id}`               | Get a single ticket (with analysis)                  |
 | PATCH  | `/tickets/{id}`               | Update status / priority / category                  |
 | DELETE | `/tickets/{id}`               | Delete a ticket                                      |
-| POST   | `/tickets/{id}/analyze`       | Run the AI analyzer (upsert semantics)               |
+| POST   | `/tickets/{id}/analyze`       | Run the analyzer (upsert semantics)               |
 | GET    | `/analytics/summary`          | Dashboard KPIs                                       |
 
 Every response carries an `X-Request-ID` header that matches the structured
@@ -277,7 +277,7 @@ pytest -q
 
 The suite covers:
 
-- Mock-AI classification correctness across categories and urgencies
+- Mock classification correctness across categories and urgencies
 - End-to-end ticket CRUD via the API
 - Filter + search behaviour
 - Analyze endpoint upsert + force semantics

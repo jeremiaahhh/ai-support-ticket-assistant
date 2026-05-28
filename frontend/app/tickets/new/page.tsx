@@ -101,7 +101,7 @@ export default function NewTicketPage() {
       <PageHeader
         eyebrow="Create ticket"
         title="Add a new support request"
-        description="Paste in an inbound email or describe the issue manually. The AI assistant will classify it, score urgency, and draft a reply."
+        description="Paste in an inbound email or describe the issue manually. The analyzer will classify it, score urgency, and draft a reply."
         actions={
           <Button variant="outline" size="sm" type="button" onClick={fillExample}>
             <ClipboardPaste className="h-3.5 w-3.5" />
@@ -167,7 +167,7 @@ export default function NewTicketPage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="auto">Let AI decide</SelectItem>
+                    <SelectItem value="auto">Auto-detect</SelectItem>
                     {TICKET_PRIORITIES.map((p) => (
                       <SelectItem key={p} value={p}>
                         {PRIORITY_LABELS[p]}
@@ -183,7 +183,7 @@ export default function NewTicketPage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="auto">Let AI decide</SelectItem>
+                    <SelectItem value="auto">Auto-detect</SelectItem>
                     {TICKET_CATEGORIES.map((c) => (
                       <SelectItem key={c} value={c}>
                         {CATEGORY_LABELS[c]}
@@ -202,7 +202,7 @@ export default function NewTicketPage() {
                 className="mt-0.5 h-4 w-4 rounded border-border accent-primary"
               />
               <div className="space-y-0.5 text-sm">
-                <p className="font-medium">Run AI analysis immediately</p>
+                <p className="font-medium">Run analysis immediately</p>
                 <p className="text-xs text-muted-foreground">
                   Triggers classification, summary, and a suggested reply right after creation.
                 </p>

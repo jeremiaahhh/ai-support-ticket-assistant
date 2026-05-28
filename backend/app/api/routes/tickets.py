@@ -82,7 +82,7 @@ def delete_ticket(ticket_id: str, db: Session = Depends(get_db)) -> Response:
 @router.post(
     "/{ticket_id}/analyze",
     response_model=AnalysisRead,
-    summary="Run the AI analyzer on a ticket",
+    summary="Run the analyzer on a ticket",
 )
 def analyze_ticket(
     ticket_id: str,

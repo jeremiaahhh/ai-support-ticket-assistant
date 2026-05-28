@@ -44,7 +44,7 @@ export default function DashboardPage() {
       <PageHeader
         eyebrow="Overview"
         title="Support operations dashboard"
-        description="Live KPIs across your queue. The AI assistant classifies tickets, scores urgency, and drafts replies — review what it flagged and act on what matters."
+        description="Live KPIs across your queue. The analyzer classifies tickets, scores urgency, and drafts replies — review what it flagged and act on what matters."
         actions={
           <Button asChild>
             <Link href="/tickets">
@@ -120,7 +120,7 @@ export default function DashboardPage() {
             <div>
               <h2 className="text-base font-semibold tracking-tight">Highest-priority tickets</h2>
               <p className="text-xs text-muted-foreground">
-                Sorted by urgency. Click a row to see the full thread and AI analysis.
+                Sorted by urgency. Click a row to see the full thread and analysis.
               </p>
             </div>
             <Button asChild size="sm" variant="ghost">
@@ -171,7 +171,7 @@ function EmptyTicketsHint() {
       <div>
         <p className="text-sm font-semibold">No tickets in the queue</p>
         <p className="mt-1 text-xs text-muted-foreground">
-          Create one to see the AI assistant in action.
+          Create one to see the analyzer in action.
         </p>
       </div>
       <Button asChild size="sm">
